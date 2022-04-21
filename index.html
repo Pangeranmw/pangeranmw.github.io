@@ -5,15 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Pangeran Muhammad Waliyullah">
-
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="/assets/ic-logo.png">
+  <link rel="icon" type="image/x-icon" href="assets/ic-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
-  
   <title>Pangeran Muhammad Waliyullah Portfolio</title>
+
 </head>
 <body>
   <header>
@@ -133,26 +132,7 @@
         <p>This is my latest project during career as a designer graphic & junior web developer</p>
       </div>
       <div class="item-container" id="portfolio-item">
-        <?php
-          include 'data.php';
-          $project = new Portfolio();
-          $project->setData();
-          $projects = $project->getData();
-          foreach($projects as $project) {?>
-          <a href="<?=$project['url']?>" class="<?=$project['class']?>" target="_blank">
-            <div class="item-service"><?=$project['type']?></div>
-            <div class="item-name"><?=$project['name']?></div>
-            <img src="<?=$project['image']?>" alt="">
-            <div class="item-tools">
-              <?php foreach($project['tools'] as $tools){?>
-                <div class="tool">
-                  <img src="<?=$tools['tools_logo']?>" alt="">
-                  <p><?=$tools['tools_name']?></p>
-                </div>
-              <?php }?>
-            </div>
-          </a>
-        <?php }?>
+
       </div>
       <button class="" id="btn-more" style="padding: 20px; margin-right: 20px;">View More</button>
       <button class="disable" id="btn-less" style="padding: 20px; background-image: none; background-color: var(--blue);">View Less</button>
@@ -278,6 +258,7 @@
       </ul>
     </div>
   </footer>
-  <script src="script.js"></script>
+  <script src="script.js">
+  </script>
 </body>
 </html>
