@@ -850,10 +850,10 @@ footer .item-container a:hover{
 }
 @media only screen and (max-width: 340px) {
   .service-container .dropdown .list p{
-    flex-basis: 85%;
+    flex-basis: 50%;
   }
   .service-container .dropdown .list button{
-    flex-basis: 15%;
+    flex-basis: 50%;
   }
 }
 @keyframes slideY {
