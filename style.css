@@ -591,6 +591,9 @@ footer .item-container a:hover{
 }
 
 @media only screen and (max-width: 768px) {
+  .hero-container .profile-image{
+    width: 50%;
+  }
   h1{
     font-size: calc(5em - 2em);
   }
@@ -682,9 +685,6 @@ footer .item-container a:hover{
   }
   .hero-container .bio button{
     margin-bottom: 20px;
-  }
-  .hero-container .profile-image{
-    width: 45vh;
   }
 
   .service-container{
@@ -820,6 +820,38 @@ footer .item-container a:hover{
   }
   footer .item-container a:hover{
     opacity: 1 !important;
+  }
+}
+@media only screen and (max-width: 385px) {
+  h1{
+    font-size: calc(5em - 2.8em);
+  }
+  h2{
+    font-size: calc(3.75em - 2.1em) ;
+  }
+  h3{
+    font-size: calc(2.25em - 0.525em) ;
+  }
+  h4{
+    font-size: calc(1.75em - 0.325em);
+  }
+  h5{
+    font-size: calc(1.375em - 0.425em);
+  }
+  p{
+    font-size: 0.7em;
+  }
+  .service-container .dropdown .list p{
+    flex-basis: 90%;
+    color: var(--green);
+    font-weight: normal;
+  }
+  .service-container .dropdown .list button{
+    background-image: none;
+    background-color: transparent;
+    padding: 0;
+    flex-basis: 10%;
+    font-size: 22px;
   }
 }
 @keyframes slideY {
