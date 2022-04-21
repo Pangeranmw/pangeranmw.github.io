@@ -843,15 +843,17 @@ footer .item-container a:hover{
   }
   .service-container .dropdown .list p{
     flex-basis: 90%;
-    color: var(--green);
-    font-weight: normal;
   }
   .service-container .dropdown .list button{
-    background-image: none;
-    background-color: transparent;
-    padding: 0;
     flex-basis: 10%;
-    font-size: 22px;
+  }
+}
+@media only screen and (max-width: 285px) {
+  .service-container .dropdown .list p{
+    flex-basis: 85%;
+  }
+  .service-container .dropdown .list button{
+    flex-basis: 15%;
   }
 }
 @keyframes slideY {
