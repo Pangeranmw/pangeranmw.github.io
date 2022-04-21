@@ -28,26 +28,22 @@ close_hamburger.addEventListener("click", () => {
   close_hamburger.classList.toggle("show");
 });
 
-const dropdownList = document.querySelectorAll(".list");
-dropdownList.forEach((list) => {
-	let btn = list.querySelector(".service button");
-	let icon = list.querySelector(".service button i");
-	var collapse = list.lastElementChild;
+function collapseDropdown(index) {
+	const dropdownList = document.querySelectorAll(".list");
+	let btn = dropdownList[index].querySelector(".service button");
+	let icon = dropdownList[index].querySelector(".service button i");
+	var collapse = dropdownList[index].lastElementChild;
 	var collapseAnswer = document.querySelectorAll(".list .collapse");
-	btn.addEventListener("click", () => {
-		collapseAnswer.forEach((ans) => {
-			let ansIcon = ans.parentElement.querySelector("button i");
-			if (collapse !== ans) {
-				ans.classList.add("hide");
-				ansIcon.className = "fas fa-angle-down";
-			}
-		});
-		collapse.classList.toggle("hide");
-		icon.className === "fas fa-angle-down"
-			? (icon.className = "fas fa-angle-up")
-			: (icon.className = "fas fa-angle-down");
-	});
-});
+	let ansIcon = collapseAnswer[index].parentElement.querySelector("button i");
+	if (collapse !== collapseAnswer[index]) {
+		collapseAnswer[index].classList.add("hide");
+		ansIcon.className = "fas fa-angle-down";
+	}
+	collapse.classList.toggle("hide");
+	icon.className === "fas fa-angle-down"
+		? (icon.className = "fas fa-angle-up")
+		: (icon.className = "fas fa-angle-down");
+}
 
 let btnMore = document.querySelector('#btn-more');
 let btnLess = document.querySelector("#btn-less");
