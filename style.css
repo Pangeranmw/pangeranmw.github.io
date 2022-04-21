@@ -330,6 +330,7 @@ a.anchor {
 }
 .service-container .dropdown .list{
   margin: 5px;
+  cursor: pointer;
 }
 .service-container .dropdown .list .service{
   display: flex;
