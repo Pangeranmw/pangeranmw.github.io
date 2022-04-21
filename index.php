@@ -1,7 +1,3 @@
-<?php
-  $project = new Portfolio()
-  $projects = $project.getData()
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,21 +133,26 @@
         <p>This is my latest project during career as a designer graphic & junior web developer</p>
       </div>
       <div class="item-container" id="portfolio-item">
-      <?=foreach($projects as $project){?>
-        <a href="<?=$project['url']?>" class="<?=$project['class']?>" target="_blank">
-          <div class="item-service"><?=$project['type']?>"</div>
-          <div class="item-name"><?=$project['name']?></div>
-          <img src="<?=$project['image']?>" alt="">
-          <div class="item-tools">
-            <?=foreach($project['tools'] as $tools){?>
-              <div class="tool">
-                <img src="<?=$tools['tools_logo']?>" alt="">
-                <p><?=$tools['tools_name']?></p>
-              </div>
-            <?=}?>
-          </div>
-        </a>
-      <?=}?>
+        <?php
+          include 'data.php';
+          $project = new Portfolio();
+          $project->setData();
+          $projects = $project->getData();
+          foreach($projects as $project) {?>
+          <a href="<?=$project['url']?>" class="<?=$project['class']?>" target="_blank">
+            <div class="item-service"><?=$project['type']?></div>
+            <div class="item-name"><?=$project['name']?></div>
+            <img src="<?=$project['image']?>" alt="">
+            <div class="item-tools">
+              <?php foreach($project['tools'] as $tools){?>
+                <div class="tool">
+                  <img src="<?=$tools['tools_logo']?>" alt="">
+                  <p><?=$tools['tools_name']?></p>
+                </div>
+              <?php }?>
+            </div>
+          </a>
+        <?php }?>
       </div>
       <button class="" id="btn-more" style="padding: 20px; margin-right: 20px;">View More</button>
       <button class="disable" id="btn-less" style="padding: 20px; background-image: none; background-color: var(--blue);">View Less</button>

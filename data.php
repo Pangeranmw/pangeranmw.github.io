@@ -1,13 +1,14 @@
 <?php
   Class Portfolio{
     private $arrayData;
-    function __construct(){
+    function setData(){
       $type = array (
         "app_design" => "App Design",
         "web_design" => "Web Desing",
         "logo_design" => "Logo Design",
         "website" => "Website",
-        "android_app" => "Android App"
+        "android_app" => "Android App",
+        "desktop_game" => "Desktop Game"
       );
       $toolsLogo = array(
         "figma"=> "assets/ic-figma.svg",
