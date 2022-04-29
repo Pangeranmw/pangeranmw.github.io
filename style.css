@@ -848,14 +848,6 @@ footer .item-container a:hover{
     flex-basis: 10%;
   }
 }
-@media only screen and (max-width: 384px) {
-  .service-container .dropdown .list p{
-    flex-basis: 50%;
-  }
-  .service-container .dropdown .list button{
-    flex-basis: 50%;
-  }
-}
 @keyframes slideY {
   from {
     transform: translateY(-100%);
