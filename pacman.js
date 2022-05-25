@@ -1,5 +1,6 @@
 let deathAudio = new Audio("./audio/pacman_death.wav");
 let duarrAudio = new Audio("./audio/siu.wav");
+let powerAudio = new Audio("./audio/pacman_eatfruit.wav");
 let eatAudio = new Audio("./audio/pacman_chomp.wav");
 let firstTime = true
 
@@ -598,10 +599,10 @@ function animate() {
 			powerUp.radius + player.radius
 		) {
 			powerUps.splice(i, 1);
+      powerAudio.play()
 			console.log("hilang");
 			ghosts.forEach((ghost) => {
 				ghost.scared = true;
-
 				setTimeout(() => {
 					ghost.scared = false;
 				}, 3000);
