@@ -7,6 +7,7 @@ let firstTime = true
 let pacmanBackgroundAudio = document.getElementById("pacmanBackgroundAudio");
 let body = document.getElementById("body");
 let ura = document.getElementById("uraa");
+
 pacmanBackgroundAudio.loop = true
 const canvas = document.querySelector("canvas");
 canvas.width = innerWidth/1.5;
@@ -146,19 +147,19 @@ const keys = {
 const map = [
 	["1", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "2"],
 	["|", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "|"],
-	["|", ".", "b", ".", "[", "7", "]", ".", "[", "7", "]", ".", "b", ".", "|"],
+	["|", ".", "b", ".", "[", "7", "]", ".", "[", "7", "]", "p", "b", ".", "|"],
 	["|", ".", ".", ".", ".", "_", ".", ".", ".", "_", ".", ".", ".", ".", "|"],
 	["|", ".", "[", "]", ".", ".", ".", "b", ".", ".", ".", "[", "]", ".", "|"],
-	["|", ".", ".", ".", ".", "^", "p", ".", ".", "^", ".", ".", ".", ".", "|"],
+	["|", ".", ".", ".", "p", "^", ".", ".", ".", "^", ".", ".", ".", ".", "|"],
 	["|", ".", "b", ".", "[", "+", "]", ".", "[", "+", "]", ".", "b", ".", "|"],
 	["|", ".", ".", ".", ".", "_", ".", ".", ".", "_", ".", ".", ".", ".", "|"],
 	["|", ".", "[", "]", ".", ".", ".", "b", ".", ".", ".", "[", "]", ".", "|"],
 	["|", ".", ".", ".", ".", "^", ".", ".", ".", "^", ".", ".", ".", ".", "|"],
-	["|", ".", "^", ".", "[", "+", "]", ".", "[", "+", "]", ".", "b", ".", "|"],
+	["|", ".", "^", "p", "[", "+", "]", ".", "[", "+", "]", ".", "b", ".", "|"],
 	["|", ".", "_", ".", ".", "_", ".", ".", ".", "_", ".", ".", ".", ".", "|"],
-	["|", ".", "[", "]", ".", ".", ".", "b", ".", ".", ".", "[", "]", ".", "|"],
-	["|", "p", ".", ".", ".", "^", ".", ".", ".", "^", "p", ".", ".", ".", "|"],
-	["|", ".", "^", ".", "[", "+", "]", ".", "[", "+", "]", ".", "^", ".", "|"],
+	["|", ".", "[", "]", ".", ".", "p", "b", ".", "p", ".", "[", "]", ".", "|"],
+	["|", ".", ".", ".", ".", "^", ".", ".", ".", "^", ".", ".", ".", ".", "|"],
+	["|", ".", "^", ".", "[", "+", "]", ".", "[", "+", "]", "p", "^", ".", "|"],
 	["|", ".", "_", ".", "b", "_", "b", ".", "b", "_", "b", ".", "_", ".", "|"],
 	["|", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "|"],
 	["4", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "3"],
@@ -567,24 +568,12 @@ function animate() {
     duarrAudio.play()
     duarrAudio.loop = true;
     cancelAnimationFrame(animationId);
-    ura.innerHTML = `
-      <h2>
-    Tarefa Introdutória 8
-    </h2>
-    <p>
-      1. Explique o que se entende por método de extração de características estatísticas.
-      <br>
-      2. Nomeie e explique os diferentes tipos de extração de recursos.
-      <br>
-      3. Mencione e dê exemplos de cálculos de características que podem ser calculados com base em histogramas.
-      <br>
-      4. Mencione e dê exemplos de cálculos de características que podem ser calculados com base em wavelets.
-      <br>
-      5. Explique o significado da extração de recursos do GLCM.
-      <br>
-      6. Liste e dê exemplos de cálculos de recursos que podem ser calculados com base no GLCM.
-    </p>`;
-  }
+		var dec = CryptoJS.AES.decrypt(
+			`U2FsdGVkX19olsw6fvvYHEBmsV+e6lPKVGlEfaNmUJanp0Ct6YyNFaYaEkevwJ7wMpvd8qTW7a68hplpuHDp5xzCRmhUW0eBV1RhY9/SJKUk274BFbwD8vIyXXHWVc8bfE/TqnRjAMXlEXbFFq1p+3Mrge17O0dnWFEuby6KiD/k1PRSjEWCTm0/REc1iRzVCVwgvmeMPtfxWiq62LIrsDPAVyv/BR+tmrTqIX15Wp6lJto1M8hApRZYhgYoKpOHLQ963jKl52vBSlHdEFj8r3/PsphY0eMmS1XYFkA3eISc20JIa7S1T3XSNbzOh3FxyAwRGh2ip1xlJwTFQfLh307fMKTOBY4jhqSU7WZtHsl0q2ap8oT/ExtJkdpMyCK11E4gmoe4lyCJimqPM8JJnHUtvRvJUq02INp9Te2aK61xYnHBYUoHnPhQ18J0c34JF14pR2t7VEs76Xzm4NhOpz2z4RRH2IMNImhGLw0i+wcC/UChAYVlD5q5ascMLDeCrrX/x7l0ZuAl0fZkRLjhA1sarImWsFPdcGO7LEeQ1+twpGVuWPUc3e97BIn/+TYQv7mGid/T6VKNc5V0sLIZCj8CjaLle77H7XY/KThKrMPM76voTM6wFYohE0WAf37szbv5ptLgw+KJCFPb3TMK0PomtFWKoH8+PTOAZVsGwMxBq0CRROJRdoqOnkuylXIFIgLfAbTq2LoxcC6QS5+KM5qIhfUDw35ic6TWXZ/9xE6Vfl6KmsWWCwrjQ6KE4s8uTTFab21WbV0aoiwR7tUhiiiUR61LPsjgEEitASP9EUw4KlgvC/R8LNZoaXn8w+Oj78ieDZEHB35+GCzyZPfGEJoXIxj9teu6cfyar4JtQDLFlvo022qLNX2SI2k72KbViY6UefBVFDXbF33RzfG0vgRM+SEpE/fBw9rJ+D2OLuE=`,
+			"Secret Passphrase"
+		);
+		ura.innerHTML = dec.toString(CryptoJS.enc.Utf8);
+	}
 
 	// power ups go
 	for (let i = powerUps.length - 1; 0 <= i; i--) {
