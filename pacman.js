@@ -3,12 +3,13 @@ let duarrAudio = new Audio("./audio/siu.wav");
 let powerAudio = new Audio("./audio/pacman_eatfruit.wav");
 let eatAudio = new Audio("./audio/pacman_chomp.wav");
 let firstTime = true
+let randomQuestion = Math.floor(Math.random() * 3);
 
 let pacmanBackgroundAudio = document.getElementById("pacmanBackgroundAudio");
-let body = document.getElementById("body");
+pacmanBackgroundAudio.loop = true
+
 let ura = document.getElementById("uraa");
 
-pacmanBackgroundAudio.loop = true
 const canvas = document.querySelector("canvas");
 canvas.width = innerWidth/1.5;
 canvas.height = innerHeight;
@@ -25,8 +26,6 @@ class Boundary {
 		this.image = image;
 	}
 	draw() {
-		// c.fillStyle = 'blue'
-		// c.fillRect(this.position.x, this.position.y, this.width, this.height)
 		c.drawImage(this.image, this.position.x, this.position.y);
 	}
 }
@@ -72,7 +71,7 @@ class Ghost {
 		this.color = color;
 		this.prevCollisions = [];
 		this.speed = 2;
-		this.scared = false;
+		this.scared = true;
 	}
 	draw() {
 		c.beginPath();
@@ -147,19 +146,19 @@ const keys = {
 const map = [
 	["1", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "2"],
 	["|", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "|"],
-	["|", ".", "b", ".", "[", "7", "]", ".", "[", "7", "]", "p", "b", ".", "|"],
+	["|", ".", "b", ".", "[", "7", "]", ".", "[", "7", "]", ".", "b", ".", "|"],
 	["|", ".", ".", ".", ".", "_", ".", ".", ".", "_", ".", ".", ".", ".", "|"],
 	["|", ".", "[", "]", ".", ".", ".", "b", ".", ".", ".", "[", "]", ".", "|"],
-	["|", ".", ".", ".", "p", "^", ".", ".", ".", "^", ".", ".", ".", ".", "|"],
+	["|", ".", ".", ".", ".", "^", ".", ".", ".", "^", ".", ".", ".", ".", "|"],
 	["|", ".", "b", ".", "[", "+", "]", ".", "[", "+", "]", ".", "b", ".", "|"],
 	["|", ".", ".", ".", ".", "_", ".", ".", ".", "_", ".", ".", ".", ".", "|"],
 	["|", ".", "[", "]", ".", ".", ".", "b", ".", ".", ".", "[", "]", ".", "|"],
 	["|", ".", ".", ".", ".", "^", ".", ".", ".", "^", ".", ".", ".", ".", "|"],
-	["|", ".", "^", "p", "[", "+", "]", ".", "[", "+", "]", ".", "b", ".", "|"],
+	["|", ".", "^", ".", "[", "+", "]", ".", "[", "+", "]", ".", "b", ".", "|"],
 	["|", ".", "_", ".", ".", "_", ".", ".", ".", "_", ".", ".", ".", ".", "|"],
-	["|", ".", "[", "]", ".", ".", "p", "b", ".", "p", ".", "[", "]", ".", "|"],
+	["|", ".", "[", "]", ".", ".", ".", "b", ".", ".", ".", "[", "]", ".", "|"],
 	["|", ".", ".", ".", ".", "^", ".", ".", ".", "^", ".", ".", ".", ".", "|"],
-	["|", ".", "^", ".", "[", "+", "]", ".", "[", "+", "]", "p", "^", ".", "|"],
+	["|", ".", "^", ".", "[", "+", "]", ".", "[", "+", "]", ".", "^", ".", "|"],
 	["|", ".", "_", ".", "b", "_", "b", ".", "b", "_", "b", ".", "_", ".", "|"],
 	["|", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "|"],
 	["4", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "3"],
@@ -251,7 +250,6 @@ function createImage(src) {
 	image.src = src;
 	return image;
 }
-// Additional cases (does not include the power up pellet that's inserted later in the vid)
 map.forEach((row, i) => {
 	row.forEach((symbol, j) => {
 		switch (symbol) {
@@ -444,7 +442,7 @@ map.forEach((row, i) => {
 					})
 				);
 				break;
-			case "p":
+			case ".":
 				powerUps.push(
 					new PowerUp({
 						position: {
@@ -476,6 +474,7 @@ let animationId;
 
 function animate() {
 	animationId = requestAnimationFrame(animate);
+	randomQuestion = Math.floor(Math.random() * 3);
 	c.clearRect(0, 0, canvas.width, canvas.height);
 
 	if (keys.w.pressed && lastKey === "w") {
@@ -568,10 +567,22 @@ function animate() {
     duarrAudio.play()
     duarrAudio.loop = true;
     cancelAnimationFrame(animationId);
-		var dec = CryptoJS.AES.decrypt(
-			`U2FsdGVkX19olsw6fvvYHEBmsV+e6lPKVGlEfaNmUJanp0Ct6YyNFaYaEkevwJ7wMpvd8qTW7a68hplpuHDp5xzCRmhUW0eBV1RhY9/SJKUk274BFbwD8vIyXXHWVc8bfE/TqnRjAMXlEXbFFq1p+3Mrge17O0dnWFEuby6KiD/k1PRSjEWCTm0/REc1iRzVCVwgvmeMPtfxWiq62LIrsDPAVyv/BR+tmrTqIX15Wp6lJto1M8hApRZYhgYoKpOHLQ963jKl52vBSlHdEFj8r3/PsphY0eMmS1XYFkA3eISc20JIa7S1T3XSNbzOh3FxyAwRGh2ip1xlJwTFQfLh307fMKTOBY4jhqSU7WZtHsl0q2ap8oT/ExtJkdpMyCK11E4gmoe4lyCJimqPM8JJnHUtvRvJUq02INp9Te2aK61xYnHBYUoHnPhQ18J0c34JF14pR2t7VEs76Xzm4NhOpz2z4RRH2IMNImhGLw0i+wcC/UChAYVlD5q5ascMLDeCrrX/x7l0ZuAl0fZkRLjhA1sarImWsFPdcGO7LEeQ1+twpGVuWPUc3e97BIn/+TYQv7mGid/T6VKNc5V0sLIZCj8CjaLle77H7XY/KThKrMPM76voTM6wFYohE0WAf37szbv5ptLgw+KJCFPb3TMK0PomtFWKoH8+PTOAZVsGwMxBq0CRROJRdoqOnkuylXIFIgLfAbTq2LoxcC6QS5+KM5qIhfUDw35ic6TWXZ/9xE6Vfl6KmsWWCwrjQ6KE4s8uTTFab21WbV0aoiwR7tUhiiiUR61LPsjgEEitASP9EUw4KlgvC/R8LNZoaXn8w+Oj78ieDZEHB35+GCzyZPfGEJoXIxj9teu6cfyar4JtQDLFlvo022qLNX2SI2k72KbViY6UefBVFDXbF33RzfG0vgRM+SEpE/fBw9rJ+D2OLuE=`,
-			"Secret Passphrase"
-		);
+		let dec;
+		if (randomQuestion === 0)
+			dec = CryptoJS.AES.decrypt(
+				`U2FsdGVkX1/XnzZHJV9DPuuTSr456EzavRUjeFkRA/vZp8DCLFAHBnGRBFEmt7kdrl6EJQ/N+BGqvBuYqIimHHI/Qf7wJL0VN8l86m+1jNExOa6FXYF+gHaNf3XRzWz0QEE2UAq5ZhTQ8389cqLGH5xyNMxhiISWjNgtrmdAvr9JRiQvqPYxMoZXMTNlnRWdXWmLleQGB33wOf88VYw1y3CTDPK22yHcwNWbdBh21nzIE6ivZdNq4+nvrp0RZFZE5MXUvZ0GNF1dKKK5GXZgrqxDNevu0XrguVV+IoRmHoaOK3lvrASeoi1wnjr15pqh`,
+				"Secret Passphrase"
+			);
+		else if (randomQuestion === 1)
+			dec = CryptoJS.AES.decrypt(
+				`U2FsdGVkX18lxDn8sVHd8XkYR/SpkUCeXVfIN6PoJ33xTAgc7rw6gB/Z9wTztmnWlOaujfmcTZPBJt4nslDJ9jRZGN2+GR/CrLoGIrNoiozjn0K609PmgWkkiDQN2pprwqL1Y1PC8L0fBhRsub6MHoOPL41c+HikJC5+WrRn6r6b6/iJrxPVUls1+JGvv3rO6MdzXHcwTt2GwNCxS7uTqzGRCRkDGrd9n8QR940MGojn9Y67aI//Kj+5NFiuegQ9l17xdOxfT1Acb/W09SlpTsmMK/0u+at+VzdTwyfDCpReDNOu1KeL+sLwMs9FgheMT/BGQcIea82OJhAHskf6itr436D2bA2TrOIakzMdeCCOrOAGMc9wHM7GaVcSYTz3iyooUbRN38F7Q2x2JpDTLQ==`,
+				"Secret Passphrase"
+			);
+		else if (randomQuestion === 2)
+			dec = CryptoJS.AES.decrypt(
+				`U2FsdGVkX1/EfbBQvEdNJl/rw44iOZ0Nhs+qB5rbAzAM43MmmNyVsxvDxZMHI8DpD/rfCIRMvjLa8NTqgu2qzCXw7k5Dza1L3OYkWvZ6Bl9zqphNO4Bm5jk//c4y5Odm6FsjlO+qxwwtYKiuW6Fr5BW0FUNQCBHaLUYNf9HuLNd9vuAPFWCXoIsy7je6f6Kdv/EioqDWMNt/BGNbmjQ01WnnvKxBinUYLovFQzo5sNs2hufcntxhMusRyahdtMGyLYti9F+mlnTVRrofHOn+BXrw1K4edVDRHL+uOketkFa6Mnuz+DF66WXXjOTlVK09`,
+				"Secret Passphrase"
+			);
 		ura.innerHTML = dec.toString(CryptoJS.enc.Utf8);
 	}
 
@@ -594,7 +605,7 @@ function animate() {
 				ghost.scared = true;
 				setTimeout(() => {
 					ghost.scared = false;
-				}, 3000);
+				}, 5000);
 			});
 		}
 	}
@@ -753,31 +764,33 @@ function animate() {
 animate();
 
 function firstTimeAudio(){
-    firstTime = false;
-    pacmanBackgroundAudio.pause();
-    pacmanBackgroundAudio.currentTime = 0;
+    if(firstTime) {
+			firstTime = false;
+			pacmanBackgroundAudio.pause();
+			pacmanBackgroundAudio.currentTime = 0;
+		}
 }
 addEventListener("keydown", ({ key }) => {
 	switch (key) {
 		case "w":
 			keys.w.pressed = true;
 			lastKey = "w";
-      firstTimeAudio();
+			firstTimeAudio();
 			break;
 		case "a":
 			keys.a.pressed = true;
 			lastKey = "a";
-      firstTimeAudio();
+			firstTimeAudio();
 			break;
 		case "s":
 			keys.s.pressed = true;
 			lastKey = "s";
-      firstTimeAudio()
+			firstTimeAudio();
 			break;
 		case "d":
 			keys.d.pressed = true;
 			lastKey = "d";
-      firstTimeAudio();
+			firstTimeAudio();
 			break;
 	}
 });

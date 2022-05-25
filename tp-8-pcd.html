@@ -22,27 +22,30 @@
     }
   </style>
 </head>
-<body oncontextmenu="return false" id="body">
+<body oncontextmenu="return false">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+
 <audio id="pacmanBackgroundAudio" autoplay>
   <source src="./audio/pacman_beginning.wav" type="audio/wav">
 </audio>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
 
 <div class="container" style="display: flex; justify-content: center;">
   <canvas></canvas>
   <div style="color: white;" id="uraa">
     <h1>Cara Bermain</h1>
-    <p>Ambil semua titik putih untuk mendapatkan <a href="/#portfolio" style="color: white; text-decoration: none;">TP</a></p>
-    <p>Titik putih besar (Power-Up): <br> Menjadikan ghost takut (Pacman kebal selama 3 detik)</p>
+    <p>Gunakan Laptop/Komputer</p>
+    <p>Tips: <b>Baca dan Arahkan</b> dengan teliti <i>cara bermain</i> <b>secara menyeluruh</b> agar mendapatkan <i>easter egg</i></p>
+    <p>Ambil semua titik putih untuk mendapatkan <a href="/#portfolio" style="color: white; text-decoration: none;">TP</a> (6 Soal)</p>
+    <p>Titik putih besar (Power-Up): <br> Menjadikan ghost takut (Pacman kebal selama 5 detik)</p>
+    <p>Ketika memenangkan permainan kalian akan mendapatkan 2 soal tp secara acak</p>
+    <p>Gunakan Huruf berikut untuk menggerakkan pacman</p>
     <p>W: Atas</p>
     <p>A: Bawah</p>
     <p>S: Kanan</p>
     <p>D: Kiri</p>
-    <p>NB: Gunakan Laptop/Komputer</p>
-    <p>Tips: <b>Baca dan arahkan</b> dengan teliti cara bermain <b>secara keseluruhan</b></p>
   </div>
 </div>
 <script src="pacman.js"></script>
+
 </body>
 </html>
