@@ -256,6 +256,27 @@ a.anchor {
   justify-content: space-between;
   padding: 80px 50px 0 50px;
 }
+.hero-container img.floating{
+  position: absolute;
+}
+.hero-container img:nth-child(3){
+  right: 55%;
+  top: 20%;
+  transform: rotate(30deg);
+  height: 4em;
+}
+.hero-container img:nth-child(2){
+  right: 10%;
+  bottom: 20%;
+  height: 5em;
+  transform: rotate(100deg);
+}
+.hero-container img:nth-child(1){
+  right: 50%;
+  bottom: 40%;
+  height: 4em;
+  transform: rotate(100deg);
+}
 .hero-container .bio{
   width: 50%;
 }
@@ -269,6 +290,7 @@ a.anchor {
 }
 .hero-container .bio button{
   margin-bottom: 20px;
+  border-radius: 5px 20px 5px 20px;
 }
 .hero-container .profile-image{
   width: 50%;
@@ -286,14 +308,13 @@ a.anchor {
 .service-container .title{
   align-items: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .service-container .title h3{
-  flex: 1;
-  margin-right: 20px;
+  margin-bottom: 20px;
 }
 .service-container .title p{
-  flex: 2.5;
+  width: 55%;
 }
 
 .service-container .item-container{
@@ -594,6 +615,9 @@ footer .item-container a:hover{
   .hero-container .profile-image{
     width: 50%;
   }
+  .hero-container img.floating{
+    display: none;
+  }
   h1{
     font-size: calc(5em - 2em);
   }
@@ -863,4 +887,40 @@ footer .item-container a:hover{
   to {
     transform: translateX(0%);
   }
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 10s linear infinite;
+  -moz-animation: rotating 10s linear infinite;
+  -ms-animation: rotating 10s linear infinite;
+  -o-animation: rotating 10s linear infinite;
+  animation: rotating 10s linear infinite;
 }
