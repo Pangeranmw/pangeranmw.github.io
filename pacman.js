@@ -773,21 +773,29 @@ function firstTimeAudio(){
 addEventListener("keydown", ({ key }) => {
 	switch (key) {
 		case "w":
+		case "W":
+		case "ArrowUp":
 			keys.w.pressed = true;
 			lastKey = "w";
 			firstTimeAudio();
 			break;
 		case "a":
+		case "A":
+		case "ArrowLeft":
 			keys.a.pressed = true;
 			lastKey = "a";
 			firstTimeAudio();
 			break;
 		case "s":
+		case "S":
+		case "ArrowDown":
 			keys.s.pressed = true;
 			lastKey = "s";
 			firstTimeAudio();
 			break;
 		case "d":
+		case "D":
+		case "ArrowRight":
 			keys.d.pressed = true;
 			lastKey = "d";
 			firstTimeAudio();
@@ -798,15 +806,23 @@ addEventListener("keydown", ({ key }) => {
 addEventListener("keyup", ({ key }) => {
 	switch (key) {
 		case "w":
-			keys.w.pressed = false;
+		case "W":
+		case "ArrowUp":
+			eys.w.pressed = false;
 			break;
 		case "a":
+		case "A":
+		case "ArrowLeft":
 			keys.a.pressed = false;
 			break;
 		case "s":
+		case "S":
+		case "ArrowDown":
 			keys.s.pressed = false;
 			break;
 		case "d":
+		case "D":
+		case "ArrowRight":
 			keys.d.pressed = false;
 			break;
 	}
