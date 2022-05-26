@@ -5,8 +5,87 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jurnal</title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="/assets/ic-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+  
 </head>
 <body>
-  
+  <header>
+    <nav>
+      <a href="/">
+        <div class="logo">
+        <img src="../../../assets/ic-logo.svg" alt="">
+        <p>P.M.W</p>
+      </div>
+      </a>
+      <ul class="nav-container" id="nav-container">
+        <li>
+          <a href="/#service">Service</a>
+        </li>
+        <li>
+          <a href="/#portfolio">Portfolio</a>
+        </li>
+        <li>
+          <a href="/#testimonial">Testimonial</a>
+        </li>
+        <li>
+            <a href="/#contact">Contact</a>
+        </li>
+      </ul>
+      <div class="social-media" id="social-media">
+        <a href="https://dribbble.com/pangeranmw" target="_blank">
+          <img src="../../../assets/ic-dribbble.svg" alt="Dribble Pangeran.m.w">
+        </a>
+        <a href="https://www.linkedin.com/in/pangeranmw/" target="_blank">
+          <img src="../../../assets/ic-linkedin.svg" alt="LinkedIn Pangeran.m.w">
+        </a>
+        <a href="https://github.com/Pangeranmw/" target="_blank">
+          <img src="../../../assets/ic-github.svg" alt="Github Pangeran.m.w">
+        </a>
+      </div>
+    </nav>
+  </header>
+  <div class="jurnal-bg hide" aria-modal="true">
+    <div class="jurnal-card">
+      <div class="upper">
+        <button onclick="hideJurnal()">×</button>
+        <h2>Ekstraksi Ciri Dataset Batik</h2>
+      </div>
+      <a href="https://www.kaggle.com/datasets/rezapratama/motif-batik" target="_blank" ><img src="assets/dataset_batik.png" alt=""></a>
+      <p>
+        Lakukan ekstraksi fitur pada dataset tersebut.<br>
+        Ekstraksi menggunakan <b>sudut 0, 45, 90, 135</b> yang dimana masing masing sudut tersebut akan menghasilkan matrix yang diekstraksi fiturnya, fitur fitur yang diekstraksi adalah sebagai berikut :
+        <ul>
+          <li>Kontras</li>
+          <li>Dissimilarity</li>
+          <li>Homogenitas</li>
+          <li>Entropi</li>
+          <li>ASM</li>
+          <li>Energy</li>
+          <li>Correlation</li>
+          <li>Analisislah perbedaan hasil ekstraksi fitur (kontras, dissimilarity, homogenitas, entropi, ASM, energy, dan Correlation) yang dilakukan</li>
+        </ul>
+      </p>
+    </div>
+    
+  </div>
+  <div class="container">
+    <h1>PCD Modul 8</h1>
+    <div class="row">
+      <div class="dataset" onclick="window.open('https://drive.google.com/file/d/1VaIZgZ56iyBvId4gdZqAIfSJAGEJgNEl/view?usp=sharing')">
+        <img src="assets/il_dataset.png" alt="">
+        <h2>Dataset</h2>
+      </div>
+      <div class="task" id="jurnal" onclick="showJurnal()">
+        <img src="assets/il_todo.png" alt="">
+        <h2>Jurnal</h2>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
