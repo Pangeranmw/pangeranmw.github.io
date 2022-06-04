@@ -253,6 +253,7 @@ a.anchor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  height: 100vh;
   justify-content: space-between;
   padding: 80px 50px 0 50px;
 }
@@ -870,6 +871,11 @@ footer .item-container a:hover{
   }
   .service-container .dropdown .list button{
     flex-basis: 10%;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .hero-container, .service-container, .portfolio-container, .testimonial-container, .contact-container{
+    padding: 80px 12em 80px 12em;
   }
 }
 @keyframes slideY {
