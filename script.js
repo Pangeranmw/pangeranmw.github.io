@@ -45,48 +45,6 @@ function collapseDropdown(index) {
 		: (icon.className = "fas fa-angle-down");
 }
 
-let btnMore = document.querySelector('#btn-more');
-let btnLess = document.querySelector("#btn-less");
-let currentPorto = 2;
-const portfolioContainer = document.querySelector("#portfolio-item");
-const portfolioList = document.querySelectorAll("#portfolio-item .item");
-btnMore.addEventListener("click", () => {
-	if (currentPorto < portfolioList.length) {
-		let portfolioItem;
-		for (let i = currentPorto; i < currentPorto + 1; i++) {
-			if (portfolioList[i]) {
-				portfolioList[i].classList.remove("hide");
-			}
-			portfolioItem = portfolioList[i];
-		}
-		currentPorto += 1;
-		if (currentPorto >= portfolioList.length) {
-			btnMore.classList.add("disable");
-			btnLess.classList.remove("disable");
-		}
-		window.scrollTo(
-			0,
-			window.scrollY + portfolioItem.getBoundingClientRect().top - 100
-		);
-	}
-});
-btnLess.addEventListener("click", () => {
-	if (currentPorto >= portfolioList.length) {
-		for (let i = currentPorto; i >= 2; i--) {
-			if (portfolioList[i]) {
-				portfolioList[i].classList.add("hide");
-			}
-		}
-		currentPorto = 2;
-		btnMore.classList.remove("disable");
-		btnLess.classList.add("disable");
-		window.scrollTo(
-			0,
-			window.scrollY + portfolioContainer.getBoundingClientRect().top - 200
-		);
-	}
-});
-
 let btnBack = document.querySelector("#btn-back");
 let btnNext = document.querySelector("#btn-next");
 let currentTesti = 2;
@@ -120,3 +78,91 @@ btnNext.addEventListener("click", () => {
 		btnNext.classList.add("disable");
 	}
 });
+
+
+//supabase config
+const url = "https://sjlereckryidbbuluwjh.supabase.co";
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqbGVyZWNrcnlpZGJidWx1d2poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQ1NDM0MDksImV4cCI6MjAyMDExOTQwOX0.PBX9bX01KhEIX-kn5jTtLs0B8jprEbM6kyX1sa74yVM";
+
+const db = supabase.createClient(url,key);
+
+const getPorto = async () => {
+	let portfolioItem = document.getElementById("portfolio-item");
+	let tr = "";
+	const res = await db
+		.from("portfolio_item")
+		.select(
+			`
+    name, link, image, service,
+    tools (
+      tool_name, tool_image
+    )
+  `).order("id", { ascending: false });
+	if (res) {
+		for (var i in res.data) {
+			let tool = "";
+			tr += `
+				<a href="${res.data[i].link}" class="item ${i < 2 ? "" : "hide"}" target="_blank">
+						<div class="item-service">${res.data[i].service}</div>
+						<div class="item-name">${res.data[i].name}</div>
+						<img src="${res.data[i].image}" alt="">
+						<div class="item-tools">`;
+			for (var j in res.data[i].tools) {
+					tool += `
+						<div class="tool">
+							<img src="${res.data[i].tools[j].tool_image}" alt="">
+							<p>${res.data[i].tools[j].tool_name}</p>
+						</div>
+					`;
+			}
+			tr+=`${tool}</div></a>`;
+			portfolioItem.innerHTML = tr;
+			console.log(tr);
+		}
+		console.log(res);
+		console.log(db);
+	}
+	let btnMore = document.querySelector("#btn-more");
+	let btnLess = document.querySelector("#btn-less");
+	let currentPorto = 2;
+	const portfolioContainer = document.querySelector("#portfolio-item");
+	const portfolioList = document.querySelectorAll("#portfolio-item .item");
+	btnMore.addEventListener("click", () => {
+		if (currentPorto < portfolioList.length) {
+			let portfolioItem;
+			for (let i = currentPorto; i < currentPorto + 1; i++) {
+				if (portfolioList[i]) {
+					portfolioList[i].classList.remove("hide");
+				}
+				portfolioItem = portfolioList[i];
+			}
+			currentPorto += 1;
+			if (currentPorto >= portfolioList.length) {
+				btnMore.classList.add("disable");
+				btnLess.classList.remove("disable");
+			}
+			window.scrollTo(
+				0,
+				window.scrollY + portfolioItem.getBoundingClientRect().top - 100
+			);
+		}
+	});
+	btnLess.addEventListener("click", () => {
+		if (currentPorto >= portfolioList.length) {
+			for (let i = currentPorto; i >= 2; i--) {
+				if (portfolioList[i]) {
+					portfolioList[i].classList.add("hide");
+				}
+			}
+			currentPorto = 2;
+			btnMore.classList.remove("disable");
+			btnLess.classList.add("disable");
+			window.scrollTo(
+				0,
+				window.scrollY + portfolioContainer.getBoundingClientRect().top - 200
+			);
+		}
+	});
+};
+
+getPorto();
