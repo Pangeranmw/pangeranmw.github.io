@@ -5,7 +5,7 @@ const social_media = document.getElementById("social-media");
 const header = document.querySelector("header");
 
 window.addEventListener("scroll", function () {
-	scrollPosition = window.scrollY;
+	const scrollPosition = window.scrollY;
 
 	if (scrollPosition >= 60) {
 		header.classList.add("bg-dark");
@@ -81,9 +81,9 @@ btnNext.addEventListener("click", () => {
 
 
 //supabase config
-const url = "https://sjlereckryidbbuluwjh.supabase.co";
-const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqbGVyZWNrcnlpZGJidWx1d2poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQ1NDM0MDksImV4cCI6MjAyMDExOTQwOX0.PBX9bX01KhEIX-kn5jTtLs0B8jprEbM6kyX1sa74yVM";
-
+import { SUPABASE_KEY, SUPABASE_URL } from "./config.js";
+const url = SUPABASE_URL;
+const key = SUPABASE_KEY;
 const db = supabase.createClient(url,key);
 
 const getPorto = async () => {
@@ -117,10 +117,7 @@ const getPorto = async () => {
 			}
 			tr+=`${tool}</div></a>`;
 			portfolioItem.innerHTML = tr;
-			console.log(tr);
 		}
-		console.log(res);
-		console.log(db);
 	}
 	let btnMore = document.querySelector("#btn-more");
 	let btnLess = document.querySelector("#btn-less");
