@@ -81,9 +81,9 @@ btnNext.addEventListener("click", () => {
 
 
 //supabase config
-import { SUPABASE_KEY, SUPABASE_URL } from "./config.js";
-const url = SUPABASE_URL;
-const key = SUPABASE_KEY;
+// import { SUPABASE_KEY, SUPABASE_URL } from "./config.js";
+const url = process.env.SUPABASE_URL;
+const key = process.env.SUPABASE_KEY;
 const db = supabase.createClient(url,key);
 
 const getPorto = async () => {
