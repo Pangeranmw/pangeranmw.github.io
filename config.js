@@ -1,0 +1,3 @@
+export const SUPABASE_KEY =
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqbGVyZWNrcnlpZGJidWx1d2poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQ1NDM0MDksImV4cCI6MjAyMDExOTQwOX0.PBX9bX01KhEIX-kn5jTtLs0B8jprEbM6kyX1sa74yVM";
+export const SUPABASE_URL = "https://sjlereckryidbbuluwjh.supabase.co";
