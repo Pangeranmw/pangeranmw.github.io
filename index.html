@@ -37,9 +37,9 @@
         <li>
           <a href="#portfolio">Portfolio</a>
         </li>
-        <li>
+        <!-- <li>
           <a href="#testimonial">Testimonial</a>
-        </li>
+        </li> -->
         <li>
             <a href="#contact">Contact</a>
         </li>
@@ -140,7 +140,7 @@
       <button class="disable" id="btn-less" style="margin-right: 20px; padding: 20px; background-image: none; background-color: var(--blue);">View Less</button>
       <button class="" id="btn-more" style="padding: 20px; ">View More</button>
     </section>
-    <section class="testimonial-container">
+    <!-- <section class="testimonial-container">
       <a class="anchor" id="testimonial"></a>
       <div class="title">
         <h3>Testimonial</h3>
@@ -156,6 +156,34 @@
       </div>
       <div class="item-container" id="testimonial-item">
         <article class="item">
+          <p>"Pangeran can perfectly handle all web components (design & code) according to the brief we gave"</p>
+          <div class="client">
+            <img src="assets/image 8.png" alt="">
+            <div class="client-info">
+              <div class="name">
+                Abdurrachman Ananta
+              </div>
+              <div class="company">
+                CEO at Preimh Creative
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="item">
+          <p>"The quality of his work is insane"</p>
+          <div class="client">
+            <img src="assets/image 7.png" alt="">
+            <div class="client-info">
+              <div class="name">
+                Lalu Arya Wira
+              </div>
+              <div class="company">
+                Administrator at Mataram City Hospital
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="item hide">
           <p>"Ran was truly a collaborative partner during the whole process, and made it fun to work on a website project -- instead of stressfull"</p>
           <div class="client">
             <img src="assets/image 5.jpeg" alt="">
@@ -169,7 +197,7 @@
             </div>
           </div>
         </article>
-        <article class="item">
+        <article class="item hide">
           <p>"Professional service. Had a satisfactory experience while working with them on building an app"</p>
           <div class="client">
             <img src="assets/image 6.jpeg" alt="">
@@ -184,7 +212,7 @@
           </div>
         </article>
       </div>
-    </section>
+    </section> -->
     <section class="contact-container" >
       <a class="anchor" id="contact"></a>
       <div class="title">
@@ -234,7 +262,24 @@
     </div>
   </footer>
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script src="./node_modules/dotenv"></script>
   <script type="module" src="./script.js"></script>
+  <script>
+    function collapseDropdown(index) {
+      const dropdownList = document.querySelectorAll(".list");
+      let btn = dropdownList[index].querySelector(".service button");
+      let icon = dropdownList[index].querySelector(".service button i");
+      var collapse = dropdownList[index].lastElementChild;
+      var collapseAnswer = document.querySelectorAll(".list .collapse");
+      let ansIcon = collapseAnswer[index].parentElement.querySelector("button i");
+      if (collapse !== collapseAnswer[index]) {
+        collapseAnswer[index].classList.add("hide");
+        ansIcon.className = "fas fa-angle-down";
+      }
+      collapse.classList.toggle("hide");
+      icon.className === "fas fa-angle-down"
+        ? (icon.className = "fas fa-angle-up")
+        : (icon.className = "fas fa-angle-down");
+    }
+  </script>
 </body>
 </html>

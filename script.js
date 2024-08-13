@@ -28,56 +28,39 @@ close_hamburger.addEventListener("click", () => {
   close_hamburger.classList.toggle("show");
 });
 
-function collapseDropdown(index) {
-	const dropdownList = document.querySelectorAll(".list");
-	let btn = dropdownList[index].querySelector(".service button");
-	let icon = dropdownList[index].querySelector(".service button i");
-	var collapse = dropdownList[index].lastElementChild;
-	var collapseAnswer = document.querySelectorAll(".list .collapse");
-	let ansIcon = collapseAnswer[index].parentElement.querySelector("button i");
-	if (collapse !== collapseAnswer[index]) {
-		collapseAnswer[index].classList.add("hide");
-		ansIcon.className = "fas fa-angle-down";
-	}
-	collapse.classList.toggle("hide");
-	icon.className === "fas fa-angle-down"
-		? (icon.className = "fas fa-angle-up")
-		: (icon.className = "fas fa-angle-down");
-}
-
-let btnBack = document.querySelector("#btn-back");
-let btnNext = document.querySelector("#btn-next");
-let currentTesti = 2;
-let testiIndex = 0;
-const testiList = document.querySelectorAll("#testimonial-item .item");
-btnBack.addEventListener("click", () => {
-	if(testiIndex > 0){
-		testiList[testiIndex-1].classList.remove("hide");
-		testiList[testiIndex+1].classList.add("hide");
-		testiIndex--;
-		currentTesti--;
-	}
-	if (currentTesti <= testiList.length - 1) {
-		btnNext.classList.remove("disable");
-	}
-	if (testiIndex === 0) {
-		btnBack.classList.add("disable");
-	}
-});
-btnNext.addEventListener("click", () => {
-	if (currentTesti <= testiList.length - 1) {
-		testiList[currentTesti].classList.remove("hide");
-		testiList[testiIndex].classList.add("hide");
-		testiIndex++;
-		currentTesti++;
-	}
-	if (testiIndex > 0) {
-		btnBack.classList.remove("disable");
-	}
-	if (currentTesti > testiList.length - 1) {
-		btnNext.classList.add("disable");
-	}
-});
+// let btnBack = document.querySelector("#btn-back");
+// let btnNext = document.querySelector("#btn-next");
+// let currentTesti = 2;
+// let testiIndex = 0;
+// const testiList = document.querySelectorAll("#testimonial-item .item");
+// btnBack.addEventListener("click", () => {
+// 	if(testiIndex > 0){
+// 		testiList[testiIndex-1].classList.remove("hide");
+// 		testiList[testiIndex+1].classList.add("hide");
+// 		testiIndex--;
+// 		currentTesti--;
+// 	}
+// 	if (currentTesti <= testiList.length - 1) {
+// 		btnNext.classList.remove("disable");
+// 	}
+// 	if (testiIndex === 0) {
+// 		btnBack.classList.add("disable");
+// 	}
+// });
+// btnNext.addEventListener("click", () => {
+// 	if (currentTesti <= testiList.length - 1) {
+// 		testiList[currentTesti].classList.remove("hide");
+// 		testiList[testiIndex].classList.add("hide");
+// 		testiIndex++;
+// 		currentTesti++;
+// 	}
+// 	if (testiIndex > 0) {
+// 		btnBack.classList.remove("disable");
+// 	}
+// 	if (currentTesti > testiList.length - 1) {
+// 		btnNext.classList.add("disable");
+// 	}
+// });
 
 
 //supabase config
